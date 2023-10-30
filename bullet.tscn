@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://daak1phky1bm1"]
+
+[ext_resource type="Script" path="res://kenney_simple-space/PNG/Retina/Player/Bullet.gd" id="1_rhfye"]
+[ext_resource type="Texture2D" uid="uid://c1e45s64fl6fl" path="res://assets/star_tiny.png" id="2_7cken"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sns3d"]
+radius = 12.0
+
+[node name="Bullet" type="Area2D"]
+script = ExtResource("1_rhfye")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_7cken")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sns3d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
